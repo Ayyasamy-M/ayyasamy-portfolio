@@ -514,7 +514,7 @@
     }
 
     .hero-terminal {
-        margin-top: 30px !important;
+        top: 70% !important;
     }
 
     .hero-side-label {
