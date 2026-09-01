@@ -1,0 +1,705 @@
+.neural-network {
+    position: relative;
+    width: 100%;
+    min-height: 620px;
+    overflow: hidden;
+    isolation: isolate;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+
+    background:
+        radial-gradient(circle at 50% 48%,
+            rgba(168, 255, 120, 0.045),
+            transparent 32%),
+        #050505;
+}
+
+/* ================================
+   BACKGROUND GRID
+================================ */
+
+.network-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px);
+
+    background-size: 60px 60px;
+
+    mask-image: radial-gradient(circle at center,
+            black 20%,
+            transparent 88%);
+
+    pointer-events: none;
+}
+
+/* ================================
+   CENTER GLOW
+================================ */
+
+.network-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 320px;
+    height: 320px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(168, 255, 120, 0.035);
+
+    filter: blur(55px);
+
+    pointer-events: none;
+}
+
+/* ================================
+   SCANNING LINE
+================================ */
+
+.network-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    z-index: 2;
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(168, 255, 120, 0.4),
+            transparent);
+
+    box-shadow:
+        0 0 20px rgba(168, 255, 120, 0.15);
+
+    pointer-events: none;
+}
+
+/* ================================
+   SVG CONNECTIONS
+================================ */
+
+.network-lines {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    overflow: visible;
+}
+
+.connection {
+    stroke: rgba(255, 255, 255, 0.11);
+    stroke-width: 0.16;
+
+    vector-effect: non-scaling-stroke;
+
+    transition:
+        stroke 0.3s ease,
+        stroke-width 0.3s ease;
+}
+
+.connection.active {
+    stroke: rgba(168, 255, 120, 0.65);
+    stroke-width: 0.28;
+
+    filter:
+        drop-shadow(0 0 5px rgba(168, 255, 120, 0.4));
+}
+
+.connection-pulse {
+    fill: #a8ff78;
+
+    filter:
+        drop-shadow(0 0 5px rgba(168, 255, 120, 0.9));
+}
+
+/* ================================
+   NETWORK CORE
+================================ */
+
+.network-core {
+    position: absolute;
+
+    top: 48%;
+    left: 50%;
+
+    width: 180px;
+    height: 180px;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.core-ring {
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    border-radius: 50%;
+}
+
+.core-ring-one {
+    transform: rotate(25deg) scaleX(1.55);
+}
+
+.core-ring-two {
+    transform: rotate(-25deg) scaleX(1.55);
+
+    border-style: dashed;
+
+    opacity: 0.45;
+}
+
+.core-center {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 86px;
+    height: 86px;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(168, 255, 120, 0.35);
+
+    border-radius: 50%;
+
+    background: rgba(5, 5, 5, 0.92);
+
+    box-shadow:
+        0 0 30px rgba(168, 255, 120, 0.08),
+        inset 0 0 20px rgba(168, 255, 120, 0.05);
+}
+
+.core-center span {
+    font-size: 21px;
+    font-weight: 700;
+
+    letter-spacing: -0.05em;
+}
+
+.core-center small {
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.2em;
+}
+
+/* ================================
+   NODE CONTAINER
+================================ */
+
+.network-nodes {
+    position: absolute;
+    inset: 0;
+
+    z-index: 5;
+}
+
+/* ================================
+   SKILL NODE
+================================ */
+
+.skill-node {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+
+    transform: translate(-50%, -50%);
+
+    padding: 8px;
+
+    border: 0;
+
+    color: #fff;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.3s ease,
+        filter 0.3s ease;
+}
+
+.skill-node:hover,
+.skill-node.hovered,
+.skill-node.active {
+    z-index: 20;
+
+    filter:
+        drop-shadow(0 0 12px rgba(168, 255, 120, 0.35));
+}
+
+/* ================================
+   NODE PULSE
+================================ */
+
+.node-pulse {
+    position: absolute;
+
+    top: 8px;
+
+    width: 26px;
+    height: 26px;
+
+    border: 1px solid rgba(168, 255, 120, 0.3);
+
+    border-radius: 50%;
+
+    animation: nodePulse 2.5s ease-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes nodePulse {
+    0% {
+        transform: scale(0.7);
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* ================================
+   NODE DOT
+================================ */
+
+.node-dot {
+    position: relative;
+    z-index: 3;
+
+    width: 15px;
+    height: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    border-radius: 50%;
+
+    background: #050505;
+
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.015);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.skill-node:hover .node-dot,
+.skill-node.hovered .node-dot {
+    border-color: #a8ff78;
+
+    box-shadow:
+        0 0 10px rgba(168, 255, 120, 0.8),
+        0 0 25px rgba(168, 255, 120, 0.35);
+}
+
+.skill-node.active .node-dot {
+    transform: scale(1.35);
+
+    border-color: #a8ff78;
+
+    background: #a8ff78;
+
+    box-shadow:
+        0 0 12px rgba(168, 255, 120, 1),
+        0 0 30px rgba(168, 255, 120, 0.55);
+}
+
+/* ================================
+   NODE TEXT
+================================ */
+
+.node-label {
+    white-space: nowrap;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+
+    transition: color 0.3s ease;
+}
+
+.node-category {
+    white-space: nowrap;
+
+    color: rgba(255, 255, 255, 0.3);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.15em;
+
+    transition: color 0.3s ease;
+}
+
+.skill-node:hover .node-label,
+.skill-node.hovered .node-label,
+.skill-node.active .node-label {
+    color: #a8ff78;
+}
+
+.skill-node:hover .node-category,
+.skill-node.hovered .node-category,
+.skill-node.active .node-category {
+    color: rgba(168, 255, 120, 0.6);
+}
+
+/* ================================
+   HOVER DIM EFFECT
+================================ */
+
+.neural-network:has(.skill-node.hovered) .skill-node:not(.hovered) {
+    opacity: 0.42;
+}
+
+.neural-network:has(.skill-node.hovered) .skill-node.hovered {
+    opacity: 1;
+}
+
+/* ================================
+   FOCUS INDICATOR
+================================ */
+
+.network-focus {
+    position: absolute;
+
+    top: 24px;
+    left: 28px;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(8px);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.12em;
+
+    pointer-events: none;
+}
+
+.network-focus span {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.network-focus strong {
+    color: #a8ff78;
+
+    font-weight: 400;
+}
+
+/* ================================
+   NETWORK HINT
+================================ */
+
+.network-hint {
+    position: absolute;
+
+    right: 25px;
+    bottom: 22px;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: rgba(255, 255, 255, 0.25);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 0.12em;
+}
+
+.network-hint svg {
+    color: rgba(168, 255, 120, 0.55);
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 950px) {
+    .neural-network {
+        min-height: 560px;
+
+        border-radius: 26px;
+    }
+
+    .network-grid {
+        background-size: 48px 48px;
+    }
+
+    .network-core {
+        width: 155px;
+        height: 155px;
+    }
+
+    .core-center {
+        width: 76px;
+        height: 76px;
+    }
+
+    .node-label {
+        font-size: 9px;
+    }
+
+    .node-category {
+        font-size: 6px;
+    }
+}
+
+/* ================================
+   SMALL TABLET
+================================ */
+
+@media (max-width: 700px) {
+    .neural-network {
+        min-height: 520px;
+
+        border-radius: 22px;
+    }
+
+    .network-grid {
+        background-size: 40px 40px;
+    }
+
+    .network-core {
+        width: 135px;
+        height: 135px;
+    }
+
+    .core-center {
+        width: 68px;
+        height: 68px;
+    }
+
+    .core-center span {
+        font-size: 17px;
+    }
+
+    .node-label {
+        font-size: 8px;
+    }
+
+    .node-category {
+        font-size: 5px;
+    }
+
+    .network-focus {
+        top: 18px;
+        left: 18px;
+    }
+
+    .network-hint {
+        right: 18px;
+        bottom: 18px;
+
+        font-size: 6px;
+    }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 500px) {
+    .neural-network {
+        min-height: 500px;
+
+        border-radius: 18px;
+    }
+
+    .network-grid {
+        background-size: 32px 32px;
+    }
+
+    .network-glow {
+        width: 220px;
+        height: 220px;
+
+        filter: blur(45px);
+    }
+
+    .network-core {
+        width: 115px;
+        height: 115px;
+    }
+
+    .core-center {
+        width: 58px;
+        height: 58px;
+    }
+
+    .core-center span {
+        font-size: 15px;
+    }
+
+    .core-center small {
+        font-size: 5px;
+    }
+
+    .node-pulse {
+        width: 21px;
+        height: 21px;
+    }
+
+    .node-dot {
+        width: 11px;
+        height: 11px;
+    }
+
+    .node-label {
+        font-size: 7px;
+    }
+
+    .node-category {
+        font-size: 5px;
+
+        letter-spacing: 0.1em;
+    }
+
+    .skill-node {
+        gap: 5px;
+
+        padding: 5px;
+    }
+
+    .network-focus {
+        padding: 7px 9px;
+
+        font-size: 6px;
+    }
+
+    .network-hint {
+        font-size: 5px;
+    }
+
+    .network-hint svg {
+        width: 11px;
+        height: 11px;
+    }
+}
+
+/* ================================
+   VERY SMALL PHONES
+================================ */
+
+@media (max-width: 360px) {
+    .neural-network {
+        min-height: 460px;
+    }
+
+    .network-core {
+        width: 100px;
+        height: 100px;
+    }
+
+    .core-center {
+        width: 50px;
+        height: 50px;
+    }
+
+    .core-center span {
+        font-size: 13px;
+    }
+
+    .node-label {
+        font-size: 6px;
+    }
+
+    .node-category {
+        display: none;
+    }
+
+    .network-hint {
+        display: none;
+    }
+}
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .node-pulse {
+        animation: none;
+    }
+
+    .skill-node {
+        transition: none;
+    }
+}

@@ -1,0 +1,971 @@
+.mind-section {
+    position: relative;
+
+    width: 100%;
+    min-height: 100svh;
+
+    overflow: hidden;
+
+    padding: clamp(100px, 10vw, 130px) 5% 100px;
+
+    background: #050505;
+
+    color: #fff;
+
+    isolation: isolate;
+}
+
+.mind-background-grid {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.18;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px);
+
+    background-size: 60px 60px;
+
+    mask-image: linear-gradient(to bottom,
+            transparent,
+            black 20%,
+            black 80%,
+            transparent);
+
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent,
+            black 20%,
+            black 80%,
+            transparent);
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.mind-header {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1100px, 100%);
+
+    margin: 0 auto clamp(50px, 6vw, 80px);
+}
+
+.mind-eyebrow {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.18em;
+}
+
+.mind-eyebrow svg {
+    flex-shrink: 0;
+
+    color: #a8ff78;
+}
+
+.mind-header h2 {
+    margin: 0;
+
+    font-size: clamp(3rem, 7vw, 7rem);
+
+    line-height: 0.9;
+
+    letter-spacing: -0.06em;
+}
+
+.mind-header h2 span {
+    color: rgba(255, 255, 255, 0.22);
+}
+
+.mind-header p {
+    max-width: 650px;
+
+    margin-top: 30px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: clamp(13px, 1.3vw, 16px);
+
+    line-height: 1.7;
+}
+
+/* ========================================
+   WORKSPACE
+======================================== */
+
+.mind-workspace {
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) minmax(280px, 390px);
+
+    gap: clamp(25px, 4vw, 50px);
+
+    align-items: center;
+
+    width: min(1250px, 100%);
+
+    margin: 0 auto;
+}
+
+/* ========================================
+   NEURAL NETWORK CONTAINER
+======================================== */
+
+.mind-network {
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 650px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.045),
+            transparent 35%),
+        rgba(255, 255, 255, 0.015);
+}
+
+.network-lines {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: visible;
+}
+
+.connection {
+    stroke: rgba(255, 255, 255, 0.1);
+
+    stroke-width: 0.16;
+
+    vector-effect: non-scaling-stroke;
+
+    transition:
+        stroke 0.3s ease,
+        stroke-width 0.3s ease;
+}
+
+.connection.active {
+    stroke: rgba(168, 255, 120, 0.55);
+
+    stroke-width: 0.28;
+
+    filter:
+        drop-shadow(0 0 5px rgba(168, 255, 120, 0.35));
+}
+
+.connection-pulse {
+    fill: #a8ff78;
+
+    filter:
+        drop-shadow(0 0 6px rgba(168, 255, 120, 0.9));
+}
+
+/* ========================================
+   NETWORK CORE
+======================================== */
+
+.network-core {
+    position: absolute;
+
+    left: 50%;
+    top: 48%;
+
+    width: 180px;
+    height: 180px;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.core-ring {
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    border-radius: 50%;
+}
+
+.core-ring-one {
+    transform: rotate(25deg) scaleX(1.6);
+}
+
+.core-ring-two {
+    transform: rotate(-25deg) scaleX(1.6);
+
+    border-style: dashed;
+
+    opacity: 0.5;
+}
+
+.core-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 85px;
+    height: 85px;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(168, 255, 120, 0.35);
+
+    border-radius: 50%;
+
+    background: rgba(5, 5, 5, 0.9);
+
+    box-shadow:
+        0 0 30px rgba(168, 255, 120, 0.08),
+        inset 0 0 20px rgba(168, 255, 120, 0.05);
+}
+
+.core-center span {
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.05em;
+}
+
+.core-center small {
+    margin-top: 2px;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.2em;
+}
+
+/* ========================================
+   SKILL NODES
+======================================== */
+
+.skill-node {
+    position: absolute;
+
+    z-index: 5;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+
+    min-width: 44px;
+    min-height: 44px;
+
+    padding: 4px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    transition:
+        filter 0.3s ease,
+        transform 0.3s ease;
+
+    touch-action: manipulation;
+}
+
+.skill-node:hover,
+.skill-node.active {
+    filter:
+        drop-shadow(0 0 12px rgba(168, 255, 120, 0.4));
+}
+
+.skill-node .node-dot {
+    position: relative;
+
+    z-index: 3;
+
+    width: 15px;
+    height: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius: 50%;
+
+    background: #050505;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.skill-node.active .node-dot {
+    border-color: #a8ff78;
+
+    background: #a8ff78;
+
+    transform: scale(1.35);
+
+    box-shadow:
+        0 0 10px rgba(168, 255, 120, 1),
+        0 0 30px rgba(168, 255, 120, 0.55);
+}
+
+.skill-node.active .node-label {
+    color: #a8ff78;
+}
+
+.skill-node.active .node-category {
+    color: rgba(168, 255, 120, 0.55);
+}
+
+.node-pulse {
+    position: absolute;
+
+    top: 12px;
+
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid rgba(168, 255, 120, 0.3);
+
+    border-radius: 50%;
+
+    animation: nodePulse 2.5s ease-out infinite;
+
+    pointer-events: none;
+}
+
+.node-label {
+    white-space: nowrap;
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+.node-category {
+    color: rgba(255, 255, 255, 0.3);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.15em;
+}
+
+@keyframes nodePulse {
+    0% {
+        transform: scale(0.7);
+
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(1.7);
+
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.7);
+
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   NETWORK HINT
+======================================== */
+
+.network-hint {
+    position: absolute;
+
+    right: 22px;
+    bottom: 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.25);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 0.12em;
+
+    pointer-events: none;
+}
+
+/* ========================================
+   SKILL PANEL
+======================================== */
+
+.skill-panel {
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 550px;
+
+    padding: 35px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.35);
+}
+
+.panel-close {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 2;
+
+    display: grid;
+
+    width: 35px;
+    height: 35px;
+
+    place-items: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 50%;
+
+    color: rgba(255, 255, 255, 0.6);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.panel-close:hover {
+    border-color: rgba(168, 255, 120, 0.35);
+
+    color: #a8ff78;
+
+    background: rgba(168, 255, 120, 0.06);
+}
+
+.panel-number {
+    color: rgba(255, 255, 255, 0.2);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 0.1em;
+}
+
+.panel-category {
+    margin-top: 60px;
+
+    color: #a8ff78;
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0.18em;
+}
+
+.skill-panel h3 {
+    margin-top: 10px;
+
+    font-size: clamp(32px, 4vw, 42px);
+
+    line-height: 1;
+
+    letter-spacing: -0.05em;
+
+    overflow-wrap: anywhere;
+}
+
+.panel-description {
+    margin-top: 15px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.panel-block {
+    margin-top: 35px;
+}
+
+.panel-label {
+    color: rgba(255, 255, 255, 0.25);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 0.16em;
+}
+
+.panel-block ul {
+    display: grid;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+    list-style: none;
+}
+
+.panel-block li {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.panel-block li span {
+    width: 4px;
+    height: 4px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #a8ff78;
+}
+
+.project-links {
+    display: grid;
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 10px 0;
+
+    border: 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    background: transparent;
+
+    text-align: left;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        padding 0.25s ease;
+}
+
+.project-link:hover {
+    padding-left: 5px;
+
+    color: #fff;
+}
+
+.project-link svg {
+    flex-shrink: 0;
+
+    color: #a8ff78;
+}
+
+/* ========================================
+   PANEL STATUS
+======================================== */
+
+.panel-status {
+    position: absolute;
+
+    right: 35px;
+    bottom: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.25);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.1em;
+}
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #a8ff78;
+
+    box-shadow:
+        0 0 8px rgba(168, 255, 120, 0.8);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1100px) {
+    .mind-workspace {
+        grid-template-columns:
+            minmax(0, 1fr) minmax(260px, 330px);
+
+        gap: 25px;
+    }
+
+    .mind-network {
+        min-height: 600px;
+    }
+
+    .skill-panel {
+        padding: 30px;
+    }
+}
+
+/* ========================================
+   TABLET / SMALL LAPTOP
+======================================== */
+
+@media (max-width: 950px) {
+    .mind-workspace {
+        grid-template-columns: 1fr;
+
+        align-items: stretch;
+    }
+
+    .mind-network {
+        min-height: 620px;
+    }
+
+    .skill-panel {
+        min-height: auto;
+    }
+
+    .panel-status {
+        position: static;
+
+        margin-top: 30px;
+    }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 650px) {
+    .mind-section {
+        padding: 90px 5% 70px;
+    }
+
+    .mind-header {
+        margin-bottom: 45px;
+    }
+
+    .mind-eyebrow {
+        margin-bottom: 20px;
+
+        font-size: 8px;
+    }
+
+    .mind-header h2 {
+        font-size: clamp(2.7rem, 13vw, 4.5rem);
+
+        line-height: 0.92;
+    }
+
+    .mind-header p {
+        margin-top: 22px;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+    .mind-header p br {
+        display: none;
+    }
+
+    .mind-network {
+        min-height: 520px;
+
+        border-radius: 20px;
+    }
+
+    .network-core {
+        width: 130px;
+        height: 130px;
+    }
+
+    .core-center {
+        width: 65px;
+        height: 65px;
+    }
+
+    .core-center span {
+        font-size: 16px;
+    }
+
+    .core-center small {
+        font-size: 6px;
+    }
+
+    .connection {
+        stroke-width: 0.22;
+    }
+
+    .connection.active {
+        stroke-width: 0.38;
+    }
+
+    .skill-node {
+        min-width: 46px;
+        min-height: 46px;
+
+        gap: 5px;
+    }
+
+    .skill-node .node-dot {
+        width: 13px;
+        height: 13px;
+    }
+
+    .node-pulse {
+        top: 12px;
+
+        width: 22px;
+        height: 22px;
+    }
+
+    .node-label {
+        font-size: 7px;
+    }
+
+    .node-category {
+        font-size: 5px;
+
+        letter-spacing: 0.1em;
+    }
+
+    .network-hint {
+        right: 14px;
+        bottom: 14px;
+
+        font-size: 6px;
+    }
+
+    .skill-panel {
+        padding: 25px;
+
+        border-radius: 18px;
+    }
+
+    .panel-close {
+        top: 15px;
+        right: 15px;
+
+        width: 32px;
+        height: 32px;
+    }
+
+    .panel-category {
+        margin-top: 48px;
+    }
+
+    .skill-panel h3 {
+        font-size: clamp(30px, 9vw, 38px);
+    }
+
+    .panel-description {
+        font-size: 12px;
+    }
+
+    .panel-block {
+        margin-top: 28px;
+    }
+
+    .project-link {
+        min-height: 44px;
+
+        font-size: 10px;
+    }
+
+    .panel-status {
+        margin-top: 25px;
+
+        font-size: 6px;
+    }
+}
+
+/* ========================================
+   VERY SMALL PHONES
+======================================== */
+
+@media (max-width: 380px) {
+    .mind-section {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .mind-header h2 {
+        font-size: 2.7rem;
+    }
+
+    .mind-network {
+        min-height: 480px;
+
+        border-radius: 16px;
+    }
+
+    .network-core {
+        width: 110px;
+        height: 110px;
+    }
+
+    .core-center {
+        width: 58px;
+        height: 58px;
+    }
+
+    .core-center span {
+        font-size: 14px;
+    }
+
+    .skill-node {
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    .node-label {
+        font-size: 6px;
+    }
+
+    .node-category {
+        font-size: 4px;
+    }
+
+    .network-hint {
+        display: none;
+    }
+
+    .skill-panel {
+        padding: 22px;
+    }
+
+    .panel-category {
+        margin-top: 45px;
+    }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .node-pulse {
+        animation: none;
+    }
+
+    .skill-node,
+    .project-link,
+    .panel-close {
+        transition: none;
+    }
+}

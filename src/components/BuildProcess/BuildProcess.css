@@ -1,0 +1,407 @@
+.build-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 150px 7vw 120px;
+
+    overflow: hidden;
+
+    background: #050505;
+
+    color: #ffffff;
+}
+
+.build-background {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px);
+
+    background-size: 70px 70px;
+
+    mask-image: linear-gradient(to bottom,
+            transparent,
+            black 15%,
+            black 85%,
+            transparent);
+}
+
+.build-header {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    margin-bottom: 100px;
+}
+
+.build-eyebrow {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 35px;
+
+    color: rgba(255, 255, 255, 0.3);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 0.18em;
+}
+
+.build-status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #a8ff78;
+
+    box-shadow:
+        0 0 12px rgba(168, 255, 120, 0.8);
+}
+
+.build-header h2 {
+    margin: 0;
+
+    font-size: clamp(3.5rem, 8vw, 8rem);
+
+    line-height: 0.88;
+
+    letter-spacing: -0.07em;
+}
+
+.build-header h2 span {
+    color: #a8ff78;
+}
+
+.build-header p {
+    margin: 35px 0 0;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 10px;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.08em;
+}
+
+.build-process {
+    position: relative;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+}
+
+.build-line {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 75px;
+
+    width: 1px;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.build-line-progress {
+    width: 100%;
+    height: 100%;
+
+    background: #a8ff78;
+
+    transform-origin: top;
+
+    box-shadow:
+        0 0 12px rgba(168, 255, 120, 0.45);
+}
+
+.build-step {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 50px 50px 1fr 130px;
+
+    gap: 25px;
+
+    min-height: 170px;
+
+    padding: 0 0 70px;
+
+    margin-bottom: 20px;
+}
+
+.build-step-number {
+    padding-top: 8px;
+
+    color: rgba(255, 255, 255, 0.2);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 9px;
+}
+
+.build-step-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+
+    background: #050505;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    z-index: 2;
+
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.build-step:hover .build-step-icon {
+    color: #a8ff78;
+
+    border-color: rgba(168, 255, 120, 0.6);
+
+    box-shadow:
+        0 0 25px rgba(168, 255, 120, 0.12);
+}
+
+.build-step-content {
+    padding-top: 3px;
+}
+
+.build-step-title {
+    display: flex;
+    align-items: baseline;
+
+    gap: 15px;
+}
+
+.build-step-title span {
+    color: rgba(168, 255, 120, 0.45);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 0.1em;
+}
+
+.build-step-title h3 {
+    margin: 0;
+
+    font-size: 30px;
+
+    letter-spacing: -0.04em;
+}
+
+.build-step-content p {
+    max-width: 520px;
+
+    margin: 18px 0 20px;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+}
+
+.build-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.build-tags span {
+    padding: 6px 8px;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 4px;
+
+    color: rgba(255, 255, 255, 0.25);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 6px;
+
+    letter-spacing: 0.08em;
+}
+
+.build-step-index {
+    padding-top: 7px;
+
+    color: rgba(255, 255, 255, 0.12);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 6px;
+
+    letter-spacing: 0.1em;
+
+    text-align: right;
+}
+
+.build-footer {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    max-width: 1050px;
+
+    margin: 40px auto 0;
+
+    color: rgba(255, 255, 255, 0.2);
+
+    font-family: 'Space Mono', monospace;
+
+    font-size: 6px;
+
+    letter-spacing: 0.14em;
+}
+
+.build-footer-line {
+    width: 60px;
+    height: 1px;
+
+    background: rgba(168, 255, 120, 0.4);
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    .build-section {
+        padding: 120px 6vw 100px;
+    }
+
+    .build-step {
+        grid-template-columns: 35px 50px 1fr;
+
+        gap: 18px;
+    }
+
+    .build-step-index {
+        display: none;
+    }
+
+    .build-line {
+        left: 60px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .build-section {
+        padding: 100px 22px 80px;
+    }
+
+    .build-header {
+        margin-bottom: 70px;
+    }
+
+    .build-eyebrow {
+        margin-bottom: 25px;
+
+        font-size: 6px;
+    }
+
+    .build-header h2 {
+        font-size: clamp(3rem, 16vw, 5rem);
+    }
+
+    .build-header p {
+        font-size: 7px;
+    }
+
+    .build-process {
+        margin-left: 0;
+    }
+
+    .build-line {
+        left: 34px;
+    }
+
+    .build-step {
+        grid-template-columns: 20px 30px 1fr;
+
+        gap: 14px;
+
+        min-height: 160px;
+
+        padding-bottom: 55px;
+    }
+
+    .build-step-number {
+        font-size: 6px;
+    }
+
+    .build-step-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .build-step-icon svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .build-step-title {
+        display: block;
+    }
+
+    .build-step-title span {
+        font-size: 5px;
+    }
+
+    .build-step-title h3 {
+        margin-top: 5px;
+
+        font-size: 23px;
+    }
+
+    .build-step-content p {
+        margin: 12px 0 15px;
+
+        font-size: 7px;
+    }
+
+    .build-tags span {
+        padding: 5px 6px;
+
+        font-size: 5px;
+    }
+
+    .build-footer {
+        flex-wrap: wrap;
+
+        font-size: 5px;
+    }
+}
