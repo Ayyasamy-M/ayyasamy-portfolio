@@ -283,7 +283,7 @@
 }
 
 .hero-terminal {
-    /* position: absolute; */
+    position: absolute;
 
     right: 7vw;
     bottom: 110px;
