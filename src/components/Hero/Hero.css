@@ -467,6 +467,7 @@
 
     .hero-terminal {
         right: 35px;
+        top: 70% !important;
     }
 
     .hero-bottom-meta {
