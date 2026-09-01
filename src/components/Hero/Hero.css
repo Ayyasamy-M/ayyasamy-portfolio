@@ -514,7 +514,8 @@
     }
 
     .hero-terminal {
-        margin-top: 320px !important;
+        margin-top: 0 !important;
+        transform: translateY(70px) !important;
     }
 
     .hero-side-label {
