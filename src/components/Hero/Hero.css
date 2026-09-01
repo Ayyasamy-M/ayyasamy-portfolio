@@ -515,6 +515,7 @@
 
     .hero-terminal {
         margin-top: 0 !important;
+        right: 15px !important;
         transform: translateY(70px) !important;
     }
 
