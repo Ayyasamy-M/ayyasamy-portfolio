@@ -519,6 +519,10 @@
         transform: translateY(70px) !important;
     }
 
+    .hero-explore {
+        margin-left: 24px;
+    }
+
     .hero-side-label {
         display: none;
     }
@@ -615,7 +619,6 @@
 
     .hero-explore {
         margin-top: 24px;
-        margin-right: 20px;
     }
 
     .hero-terminal {
